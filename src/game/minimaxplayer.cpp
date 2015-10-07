@@ -11,7 +11,7 @@
  * @brief Computes best move for this player in the current game.
  *
  * Assuming the opponent is playing optimally, the
- * algorithm aims to maximize the minimum possible score.
+ * algorithm aims to minimize the maximum possible loss.
  * If several moves yield the same final score, one of them
  * is chosen randomly with a uniform distribution.
  *
@@ -85,11 +85,11 @@ int MinimaxPlayer::boardScore(const Board& board)
  *
  * Implements Minimax decision rule using Alpha-Beta pruning algorithm.
  *
- * @param board       Board object reference representing current game state
- * @param alpha       lower pruning thresshold
- * @param beta        upper pruning thresshold
- * @param max_player  true if this is maximizing player's turn, false otherwise
- * @return            maximum score player on turn can achieve
+ * @param board      Board object reference representing current game state
+ * @param alpha      lower pruning thresshold
+ * @param beta       upper pruning thresshold
+ * @param maxPlayer  true if this is maximizing player's turn, false otherwise
+ * @return           maximum score player on turn can achieve
  */
 int MinimaxPlayer::minimax(Board& board, int alpha, int beta, bool maxPlayer)
 {

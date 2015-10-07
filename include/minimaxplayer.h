@@ -5,6 +5,9 @@
 
 class Board;
 
+/**
+ * @brief The MinimaxPlayer class implements AI player using MinMax decision rule.
+ */
 class MinimaxPlayer : public Player {
 public:
     std::pair<int, int> getNextMove(GameWidget *game);
