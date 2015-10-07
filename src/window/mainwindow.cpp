@@ -22,18 +22,16 @@ MainWindow::~MainWindow() {
  * Starts a new game against AI, with human being the first player.
  */
 void MainWindow::on_actionFirstPlayer_triggered() {
-    game->startNewGame(
-                std::unique_ptr<Player>(new HumanPlayer()),
-                std::unique_ptr<Player>(new MinimaxPlayer())
-            );
+    std::unique_ptr<Player> player1(new HumanPlayer());
+    std::unique_ptr<Player> player2(new MinimaxPlayer());
+    game->startNewGame(player1, player2);
 }
 
 /**
  * Starts a new game against AI, with human being the second player.
  */
 void MainWindow::on_actionSecondPlayer_triggered() {
-    game->startNewGame(
-                std::unique_ptr<Player>(new MinimaxPlayer()),
-                std::unique_ptr<Player>(new HumanPlayer())
-            );
+    std::unique_ptr<Player> player1(new MinimaxPlayer());
+    std::unique_ptr<Player> player2(new HumanPlayer());
+    game->startNewGame(player1, player2);
 }
