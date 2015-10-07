@@ -65,7 +65,7 @@ int Board::get(int x, int y) const
  * @brief Returns true, if a specified position on the board is empty.
  * @param x  desired x-coordinate on the board
  * @param y  desired y-coordinate on the board
- * @return   true, if position is empty
+ * @return   true, if position on the board is empty, false otherwise
  */
 bool Board::isAvailable(int x, int y) const
 {
@@ -73,26 +73,26 @@ bool Board::isAvailable(int x, int y) const
 }
 
 /**
- * @brief Returns true, if one of the players won, or theboard is full.
- * @return  true, if the game is finished
+ * @brief Returns true, if one of the players won, or the board is full.
+ * @return  true, if the game is finished, false otherwise
  */
 bool Board::isFinished() const
 {
-    return winningPlayer_ != -1 || round_ >= 9;
+    return (winningPlayer_ != -1 || round_ >= 9);
 }
 
 /**
  * @brief Returns true, if the game ended in a draw.
- * @return  true, if game is drawn
+ * @return  true, if game ended in a draw, false otherwise
  */
 bool Board::isDraw() const
 {
-    return isFinished() && getWinner() == -1;
+    return (isFinished() && getWinner() == -1);
 }
 
 /**
  * @brief Returns number of rounds played.
- * @return  number of rounds
+ * @return  number of rounds played
  */
 int Board::getRound() const
 {
