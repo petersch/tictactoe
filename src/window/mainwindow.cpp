@@ -19,7 +19,7 @@ MainWindow::~MainWindow() {
 }
 
 /**
- * Starts a new game against AI, with human being the first player.
+ * @brief Starts a new game against AI, with human being the first player.
  */
 void MainWindow::on_actionFirstPlayer_triggered() {
     std::unique_ptr<Player> player1(new HumanPlayer());
@@ -28,7 +28,7 @@ void MainWindow::on_actionFirstPlayer_triggered() {
 }
 
 /**
- * Starts a new game against AI, with human being the second player.
+ * @brief Starts a new game against AI, with human being the second player.
  */
 void MainWindow::on_actionSecondPlayer_triggered() {
     std::unique_ptr<Player> player1(new MinimaxPlayer());

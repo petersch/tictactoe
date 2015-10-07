@@ -2,8 +2,7 @@
 #include "include/gamewidget.h"
 
 /**
- * Returns move chosen by the player.
- *
+ * @brief Returns move chosen by the player.
  * @param game  GameWidget running current game
  * @return      pair of x and y coordinates representing chosen move
  */

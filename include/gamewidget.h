@@ -12,6 +12,9 @@
 
 class Player;
 
+/**
+ * @brief The GameWidget class is a QWidget running the game.
+ */
 class GameWidget : public QWidget {
     Q_OBJECT
 public:

@@ -1,7 +1,8 @@
 #include "include/player.h"
 
 /**
- * Sets the player's ID.
+ * @brief Sets the player's ID.
+ *
  * Player's ID has to be 0 or 1.
  * The ID represents the player in the game.
  *
@@ -12,8 +13,7 @@ void Player::setId(int id) {
 }
 
 /**
- * Returns this player's ID.
- *
+ * @brief Returns this player's ID.
  * @return  this player's ID
  */
 int Player::getId() {
