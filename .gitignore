@@ -1,3 +1,6 @@
+# Qt Creator autosave files
+*.autosave
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
