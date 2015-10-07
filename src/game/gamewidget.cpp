@@ -25,15 +25,18 @@ GameWidget::~GameWidget()
 void GameWidget::startNewGame(std::unique_ptr<Player>& player1, std::unique_ptr<Player>& player2)
 {
     abortGame();
+    board_.clear();
     gameStarted_ = true;
     gameAborted_ = false;
-    board_.clear();
+    update();
+
     players_[0] = std::move(player1);
     players_[0]->setId(0);
+
     players_[1] = std::move(player2);
     players_[1]->setId(1);
+
     gameThreadFuture_ = QtConcurrent::run(this, &GameWidget::runGame);
-    update();
 }
 
 /**
@@ -121,6 +124,7 @@ void GameWidget::paintEvent(QPaintEvent *)
 {
     if (!gameStarted_) return;
 
+    // reset square viewport in the center of the widget
     int sideLength = std::min(width(), height());
     int left = (width() - sideLength) / 2;
     int top = (height() - sideLength) / 2;
@@ -131,12 +135,14 @@ void GameWidget::paintEvent(QPaintEvent *)
     painter.setViewport(painterViewportRect_);
     painter.setWindow(painterWindowRect_);
 
+    // draw grid lines
     painter.setPen(QPen(QPalette().color(QPalette::Mid)));
     painter.drawLine(sideLength/3, 0, sideLength/3, sideLength-1);
     painter.drawLine(2*sideLength/3, 0, 2*sideLength/3, sideLength-1);
     painter.drawLine(0, sideLength/3, sideLength-1, sideLength/3);
     painter.drawLine(0, 2*sideLength/3, sideLength-1, 2*sideLength/3);
 
+    // draw rescaled player images
     QPixmap xScaledPixmap = xPixmap_.scaledToWidth(sideLength/3, Qt::SmoothTransformation);
     QPixmap oScaledPixmap = oPixmap_.scaledToWidth(sideLength/3, Qt::SmoothTransformation);
     for (int y = 0; y < 3; ++y) {
@@ -150,6 +156,7 @@ void GameWidget::paintEvent(QPaintEvent *)
         }
     }
 
+    // if the game is over, draw winner overlay
     if (board_.isFinished()) {
         QColor color = palette().color(QPalette::Window);
         color.setAlpha(192);
