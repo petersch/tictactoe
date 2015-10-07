@@ -75,8 +75,17 @@ std::pair<int, int> MinimaxPlayer::getNextMove(GameWidget *game)
  */
 int MinimaxPlayer::boardScore(const Board& board)
 {
-    if (!board.isFinished() || board.isDraw()) return board.getRound();
-    if (board.getWinner() == getId()) return 20 - board.getRound();
+    // if game after 9 rounds ended in a draw, score is 0
+    if (!board.isFinished() || board.isDraw())
+        return 0;
+
+    // if player won, score ranges from 1 to 10
+    // player gets higher score the earlier he won
+    if (board.getWinner() == getId())
+        return 10 - board.getRound();
+
+    // if player lost, score ranges from -10 to -1
+    // player gets higher score the later he lost
     return board.getRound() - 10;
 }
 
