@@ -25,18 +25,21 @@ GameWidget::~GameWidget()
 void GameWidget::startNewGame(std::unique_ptr<Player>& player1, std::unique_ptr<Player>& player2)
 {
     abortGame();
-    board_.clear();
-    gameStarted_ = true;
-    gameAborted_ = false;
     update();
 
-    players_[0] = std::move(player1);
-    players_[0]->setId(0);
+    if (player1 && player2) {
+        board_.clear();
+        gameStarted_ = true;
+        gameAborted_ = false;
+        update();
+        players_[0] = std::move(player1);
+        players_[0]->setId(0);
 
-    players_[1] = std::move(player2);
-    players_[1]->setId(1);
+        players_[1] = std::move(player2);
+        players_[1]->setId(1);
 
-    gameThreadFuture_ = QtConcurrent::run(this, &GameWidget::runGame);
+        gameThreadFuture_ = QtConcurrent::run(this, &GameWidget::runGame);
+    }
 }
 
 /**
@@ -67,7 +70,9 @@ void GameWidget::runGame()
 void GameWidget::abortGame()
 {
     gameThreadMutex_.lock();
+    gameStarted_ = false;
     gameAborted_ = true;
+    board_.clear();
     mouseInputCondition_.wakeAll();
     gameThreadMutex_.unlock();
     gameThreadFuture_.waitForFinished();
