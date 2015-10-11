@@ -24,7 +24,7 @@ void Board::clear()
  *
  * @param x          chosen x-coordinate on the board
  * @param y          chosen y-coordinate on the board
- * @param player_id  id of the player taking turn
+ * @param playerId  id of the player taking turn
  */
 void Board::insert(int x, int y, int playerId)
 {
