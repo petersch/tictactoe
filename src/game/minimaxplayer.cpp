@@ -100,7 +100,7 @@ int MinimaxPlayer::boardScore(const Board& board)
  * @param maxPlayer  true if this is maximizing player's turn, false otherwise
  * @return           maximum score player on turn can achieve
  */
-int MinimaxPlayer::minimax(Board& board, int alpha, int beta, bool maxPlayer)
+int MinimaxPlayer::minimax(const Board& board, int alpha, int beta, bool maxPlayer)
 {
     if (board.isFinished()) {
         return boardScore(board);

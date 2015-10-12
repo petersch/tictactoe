@@ -13,7 +13,7 @@ public:
     std::pair<int, int> getNextMove(GameWidget *game);
 protected:
     int boardScore(const Board& board);
-    int minimax(Board& board, int alpha, int beta, bool maxPlayer);
+    int minimax(const Board& board, int alpha, int beta, bool maxPlayer);
 };
 
 #endif // MINIMAXPLAYER_H
